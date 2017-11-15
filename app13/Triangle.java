@@ -2,17 +2,22 @@ package app13;
 
 public class Triangle extends TwoDimensionalShape {
 
-	public Triangle(double a, double b, double c) {
-		super(a, b, c);
+	private double semiPerimeter;
+	
+	public Triangle(double side1, double side2, double side3) {
+			super(side1, side2, side3);
+			semiPerimeter = (side1 + side2 + side3) / 2;
+			if(!(semiPerimeter > side1 && semiPerimeter > side2 && semiPerimeter > side3)) {
+				throw new IllegalArgumentException("These values do not represent the sides of a triangle!!!");
+			}
 	}
 
 	@Override
 	public double getArea() {
-		double a = super.getSide1();
-		double b = super.getSide2();
-		double c = super.getSide3();
-		double poluPerimeter = (a + b + c) / 2;
-		return Math.sqrt(poluPerimeter * (poluPerimeter - a) * (poluPerimeter - b) * (poluPerimeter - c));
+		double side1 = super.getSide1();
+		double side2 = super.getSide2();
+		double side3 = super.getSide3();
+		return Math.sqrt(semiPerimeter * (semiPerimeter - side1) * (semiPerimeter - side2) * (semiPerimeter - side3));
 	}
 
 	@Override
